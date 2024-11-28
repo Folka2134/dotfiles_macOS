@@ -54,3 +54,4 @@
 (package! tldr)
 (package! move-text)
 ;;(package! codeium :recipe (:host github :repo "Exafunction/codeium.el"))
+;;(package! multiple-cursors)

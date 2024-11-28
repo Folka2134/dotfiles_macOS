@@ -7,16 +7,23 @@
 (setq mac-right-option-modifier 'meta)  ;; Set right Option as Meta
 (setq mac-option-modifier 'meta) ;; Set both Option keys as Meta
 (add-hook! 'doom-after-init-hook (dirvish-peek-mode 1)) ;; Display file preview
-;; Use 'vv' to ESC
+;; Use 'jk' to ESC
 (use-package! key-chord
   :config
   (key-chord-mode 1)
   ;; Adjust this value to control the maximum delay between keypresses (in seconds)
   (setq key-chord-two-keys-delay 0.1))
 ;; Define the key chord for insert mode
-(key-chord-define evil-insert-state-map "vv" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 ;; Define the key chord for visual mode
-(key-chord-define evil-visual-state-map "vv" 'evil-normal-state)
+(key-chord-define evil-visual-state-map "jk" 'evil-normal-state)
+;; Paste without yanking
+(map! :leader
+      :desc "Paste without yanking"
+      "p"
+      (lambda ()
+        (interactive)
+        (evil-use-register ?_ (call-interactively #'evil-paste-before))))
 
 ;; Moving text
 (map! :leader
@@ -25,6 +32,8 @@
 
 (map! :i "C-h" #'backward-char
       :i "C-l" #'forward-char)
+
+(setq +clipboard-enabled t)
 
 ;; ---- CUSTOM CONFIG END ----
 
