@@ -29,7 +29,6 @@ return {
 				"html",
 				"cssls",
 				"tailwindcss",
-				"react",
 				"lua_ls",
 				"graphql",
 				"emmet_ls",
