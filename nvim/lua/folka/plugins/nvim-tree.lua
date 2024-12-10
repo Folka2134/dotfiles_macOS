@@ -7,11 +7,12 @@ return {
 		-- recommended settings from nvim-tree documentation
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
-		vim.g.nvim_treeside = "right"
+		-- vim.g.nvim_treeside = "right"
 
 		nvimtree.setup({
 			view = {
 				width = 35,
+				side = "right",
 				relativenumber = true,
 			},
 			-- change folder arrow icons
@@ -46,16 +47,34 @@ return {
 			},
 		})
 
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
+		-- Function to toggle or focus nvim-tree
+		local function toggle_nvim_tree()
+			local api = require("nvim-tree.api")
+			if not require("nvim-tree.view").is_visible() then
+				-- Open the tree if it's not visible
+				api.tree.open()
+			else
+				-- If the tree is visible, check if it is focused
+				if vim.bo.filetype == "NvimTree" then
+					-- Close the tree if it is focused
+					api.tree.close()
+				else
+					-- Focus the tree if it is not focused
+					api.tree.focus()
+				end
+			end
+		end
+
+		-- Keymap for Leader m
+		vim.keymap.set("n", "<leader>m", toggle_nvim_tree, { noremap = true, silent = true })
 
 		-- keymap.set("n", "<leader>f1", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-		keymap.set(
-			"n",
-			"<leader>b",
-			"<cmd>NvimTreeFindFileToggle<CR>",
-			{ desc = "Toggle file explorer on current file" }
-		)
+		-- keymap.set(
+		-- 	"n",
+		-- 	"<leader>m",
+		-- 	"<cmd>NvimTreeFindFileToggle<CR>",
+		-- 	{ desc = "Toggle file explorer on current file" }
+		-- )
 		-- keymap.set("n", "<F1>", "<cmd>NvimTreeFocus<CR>", { desc = "Focus Explorer" })
 		-- keymap.set("n", "<leader>f1", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
 		-- toggle file explorer on current file

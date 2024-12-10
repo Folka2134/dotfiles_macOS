@@ -4,24 +4,32 @@ vim.g.mapleader = " "
 local keymap = vim.keymap -- for conciseness
 
 ---------------------
--- General Keymaps -------------------
+-- General Keymaps
+-- -------------------
 
 -- Functionality
 -- Set leader - w - d to :q (maybe :wq)
 keymap.set("n", "<leader>w", ":q<CR>", { desc = "Set quit window " })
 keymap.set("n", "<leader>s", ":w<CR>", { desc = "Set save file" })
-keymap.set("n", "<leader>f", "<D-f>", { desc = "Search for word in current file" })
+keymap.set("n", "<leader>f", "/", { desc = "Search for word in current file" })
 keymap.set("n", "/", ":nohlsearch<CR>", { desc = "Clear word search" })
+keymap.set("n", "<CR>", "a<CR><Esc>", { desc = "Add a new line below without entering Insert mode" })
+keymap.set("n", "<BS>", "a<BS><Esc>", { desc = "Add a new line above without entering Insert mode" })
 
 -- use jk to exit modes
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-keymap.set("v", "jk", "<ESC>", { desc = "Exit visual mode with jk" })
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- keymap.set("v", "jk", "<ESC>", { desc = "Exit visual mode with jk" })
+keymap.set("i", "<leader><CR>", "<ESC>", { desc = "Exit insert mode with Space-Enter" })
+keymap.set("v", "<leader><CR>", "<ESC>", { desc = "Exit insert mode with Space-Enter" })
+keymap.set("n", "<leader><CR>", "<ESC>", { desc = "Exit insert mode with Space-Enter" })
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
--- delete single character without copying into register
-keymap.set("n", "x", '"_x')
+keymap.set("n", "x", '"_x', { desc = "delete single character without copying into register" })
+keymap.set("n", "X", '"_X', { desc = "delete single character without copying into register" })
+keymap.set("n", "d", '"_d', { desc = "delete without copying into register" })
+keymap.set("n", "dd", '"_dd', { desc = "delete line character without copying into register" })
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment

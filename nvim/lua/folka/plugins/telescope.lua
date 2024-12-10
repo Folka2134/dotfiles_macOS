@@ -18,12 +18,12 @@ return {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
 						["<C-j>"] = actions.move_selection_next, -- move to next result
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-						["<CR>"] = function(prompt_bufnr)
-							local selection = require("telescope.actions.state").get_selected_entry()
-							local fname = selection[1]
-							vim.cmd("tabnew " .. fname) -- Open the file in a new tab
-							vim.api.nvim_input("<Esc>") -- Leave insert mode
-						end,
+						-- ["<CR>"] = function(prompt_bufnr)
+						-- 	local selection = require("telescope.actions.state").get_selected_entry()
+						-- 	local fname = selection[1]
+						-- 	vim.cmd("tabnew " .. fname) -- Open the file in a new tab
+						-- 	vim.api.nvim_input("<Esc>") -- Leave insert mode
+						-- end,
 						-- ["<CR>"] = function(prompt_bufnr)
 						-- 	local state = require("telescope.actions.state")
 						-- 	local entry = state.get_selected_entry()
@@ -55,12 +55,12 @@ return {
 						-- end,
 					},
 					n = {
-						["<CR>"] = function(prompt_bufnr)
-							local selection = require("telescope.actions.state").get_selected_entry()
-							local fname = selection[1]
-							vim.cmd("tabnew " .. fname) -- Open the file in a new tab
-							vim.api.nvim_input("<Esc>") -- Leave insert mode
-						end,
+						-- ["<CR>"] = function(prompt_bufnr)
+						-- 	local selection = require("telescope.actions.state").get_selected_entry()
+						-- 	local fname = selection[1]
+						-- 	vim.cmd("tabnew " .. fname) -- Open the file in a new tab
+						-- 	vim.api.nvim_input("<Esc>") -- Leave insert mode
+						-- end,
 						-- ["<CR>"] = function(prompt_bufnr)
 						-- 	local state = require("telescope.actions.state")
 						-- 	local entry = state.get_selected_entry()

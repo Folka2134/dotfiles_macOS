@@ -30,10 +30,28 @@ return {
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
 				opts.desc = "Go to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+				keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- go to declaration
 
 				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				keymap.set("n", "<leader>,", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+
+				-- Open definition in another tab
+				-- local actions = require("telescope.actions")
+				-- local action_state = require("telescope.actions.state")
+				-- local builtin = require("telescope.builtin")
+				-- vim.keymap.set("n", "<leader>,", function()
+				-- 	builtin.lsp_definitions({
+				-- 		attach_mappings = function(prompt_bufnr, map)
+				-- 			actions.select_default:replace(function()
+				-- 				local selection = action_state.get_selected_entry()
+				-- 				actions.close(prompt_bufnr)
+				-- 				vim.cmd("tabnew " .. vim.fn.fnameescape(selection.filename))
+				-- 				vim.api.nvim_win_set_cursor(0, { selection.lnum, selection.col - 1 })
+				-- 			end)
+				-- 			return true
+				-- 		end,
+				-- 	})
+				-- end, opts)
 
 				opts.desc = "Show LSP implementations"
 				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
